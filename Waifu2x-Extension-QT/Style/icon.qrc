@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/icon_main.png</file>
+        <file>icon/Home.svg</file>
+        <file>icon/AddSetting.svg</file>
+        <file>icon/EngineSettings.svg</file>
+        <file>icon/VideoSettings.svg</file>
+        <file>icon/CompatibilityTest.svg</file>
+        <file>icon/pause-button.svg</file>
+        <file>icon/refresh.svg</file>
+        <file>icon/gif_Rmenu.svg</file>
+        <file>icon/picture_Rmenu.svg</file>
+        <file>icon/video_Rmenu.svg</file>
+        <file>icon/view_file.svg</file>
+        <file>icon/cancel.svg</file>
+        <file>icon/Apply.svg</file>
+        <file>icon/RemoveFile.svg</file>
+        <file>icon/opne_folder.svg</file>
+        <file>icon/Read_FileList.svg</file>
+        <file>icon/Save_FileList.svg</file>
+        <file>icon/Read_FileList_hover.svg</file>
+        <file>icon/Save_FileList_hover.svg</file>
+        <file>icon/RemoveItem.svg</file>
+        <file>icon/RemoveItem_hover.svg</file>
+        <file>icon/ClearList.svg</file>
+        <file>icon/ClearList_hover.svg</file>
+        <file>icon/AddNewFile.svg</file>
+        <file>icon/AddNewFile_hover.svg</file>
+        <file>icon/AddNewFile_disabled.svg</file>
+        <file>icon/RemoveItem_disabled.svg</file>
+        <file>icon/ClearList_disabled.svg</file>
+        <file>icon/Read_FileList_disabled.svg</file>
+        <file>icon/Save_FileList_disabled.svg</file>
+        <file>icon/ResizeFilesListSplitter.svg</file>
+        <file>icon/ResizeFilesListSplitter_disabled.svg</file>
+        <file>icon/ResizeFilesListSplitter_hover.svg</file>
+    </qresource>
+</RCC>
