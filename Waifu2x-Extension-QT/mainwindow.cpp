@@ -110,7 +110,6 @@ MainWindow::~MainWindow()
 {
     taskKill("Anime4K.exe");
     taskKill("waifu2x-ncnn-vulkan.exe");
-    taskKill("waifu2x-ncnn-vulkan-fp16p.exe");
     taskKill("waifu2x-converter-cpp.exe");
     taskKill("srmd-ncnn-vulkan.exe");
     taskKill("waifu2x-caffe.exe");
@@ -938,7 +937,7 @@ void MainWindow::on_checkBox_AlwaysHideSettings_stateChanged(int arg1)
 */
 void MainWindow::on_pushButton_BrowserFile_clicked()
 {
-    QString Last_browsed_path = Current_Path + "/LastBrowsedPath_W2xEX.ini";
+    QString Last_browsed_path = Current_Path + "/LastBrowsedPath.ini";
     //======== 生成 扩展名过滤 字符串 =========
     QStringList nameFilters;
     nameFilters.append("*.gif");
@@ -1232,6 +1231,7 @@ void MainWindow::on_checkBox_OutPath_isEnabled_stateChanged(int arg1)
     if (ui->checkBox_OutPath_isEnabled->isChecked())
     {
         ui->lineEdit_outputPath->setEnabled(1);
+        ui->pushButton_browser_path->setEnabled(1);
         ui->checkBox_OutPath_KeepOriginalFileName->setEnabled(1);
         ui->checkBox_KeepParentFolder->setEnabled(1);
         ui->checkBox_OutPath_Overwrite->setEnabled(1);
@@ -1241,6 +1241,7 @@ void MainWindow::on_checkBox_OutPath_isEnabled_stateChanged(int arg1)
     else
     {
         ui->lineEdit_outputPath->setEnabled(0);
+        ui->pushButton_browser_path->setEnabled(0);
         ui->checkBox_OutPath_KeepOriginalFileName->setEnabled(0);
         ui->checkBox_KeepParentFolder->setEnabled(0);
         ui->checkBox_OutPath_Overwrite->setEnabled(0);
@@ -1259,7 +1260,6 @@ void MainWindow::on_pushButton_ForceRetry_clicked()
     //========
     taskKill("Anime4K.exe");
     taskKill("waifu2x-ncnn-vulkan.exe");
-    taskKill("waifu2x-ncnn-vulkan-fp16p.exe");
     taskKill("waifu2x-converter-cpp.exe");
     taskKill("srmd-ncnn-vulkan.exe");
     taskKill("waifu2x-caffe.exe");
@@ -1419,26 +1419,6 @@ void MainWindow::on_checkBox_ProcessVideoBySegment_stateChanged(int arg1)
     }
 }
 
-void MainWindow::on_comboBox_version_Waifu2xNCNNVulkan_currentIndexChanged(int index)
-{
-    switch (ui->comboBox_version_Waifu2xNCNNVulkan->currentIndex())
-    {
-    case 0:
-    {
-        Waifu2x_ncnn_vulkan_FolderPath = Current_Path + "/waifu2x-ncnn-vulkan";
-        Waifu2x_ncnn_vulkan_ProgramPath = Waifu2x_ncnn_vulkan_FolderPath + "/waifu2x-ncnn-vulkan.exe";
-        ui->checkBox_TTA_vulkan->setEnabled(1);
-        return;
-    }
-    case 1:
-    {
-        Waifu2x_ncnn_vulkan_FolderPath = Current_Path + "/waifu2x-ncnn-vulkan";
-        Waifu2x_ncnn_vulkan_ProgramPath = Waifu2x_ncnn_vulkan_FolderPath + "/waifu2x-ncnn-vulkan-fp16p.exe";
-        ui->checkBox_TTA_vulkan->setEnabled(1);
-        return;
-    }
-    }
-}
 
 void MainWindow::on_checkBox_EnablePreProcessing_Anime4k_stateChanged(int arg1)
 {
@@ -1507,11 +1487,6 @@ void MainWindow::on_checkBox_SpecifyGPU_Anime4k_stateChanged(int arg1)
 void MainWindow::on_checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_clicked()
 {
     ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW->setChecked(isCompatible_Waifu2x_NCNN_Vulkan_NEW);
-}
-
-void MainWindow::on_checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P_clicked()
-{
-    ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P->setChecked(isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P);
 }
 
 void MainWindow::on_checkBox_isCompatible_SRMD_NCNN_Vulkan_clicked()
@@ -1840,5 +1815,35 @@ void MainWindow::showTextExt(QString title, QString msg)
 void MainWindow::on_pushButton_view_textbrowser_clicked()
 {
     QtConcurrent::run(this,&MainWindow::showTextExt,QString("View Log"),ui->textBrowser->toPlainText());
+}
+
+
+void MainWindow::on_pushButton_browser_path_clicked()
+{
+    QString Last_browsed_path = Current_Path + "/LastBrowsedPath.ini";
+    QString BrowserStartPath = ""; // 浏览文件时的起始文件夹
+    //=========== 读取上一次浏览的文件夹 ===========================
+    if (QFile::exists(Last_browsed_path))
+    {
+        QSettings configIniRead(Last_browsed_path, QSettings::IniFormat);
+        configIniRead.setIniCodec(QTextCodec::codecForName("UTF-8"));
+        BrowserStartPath = configIniRead.value("/Path").toString();
+        if (!QFile::exists(BrowserStartPath))
+            BrowserStartPath = "";
+    }
+    //===========================================================
+    QString output_path = QFileDialog::getExistingDirectory(this, "Select Directory", BrowserStartPath);
+    if (output_path.isNull() || output_path.isEmpty())
+    {
+        return;
+    }
+    //================== 记住上一次浏览的文件夹 =======================
+    QFile::remove(Last_browsed_path);
+    QSettings configIniWrite(Last_browsed_path, QSettings::IniFormat);
+    configIniWrite.setIniCodec(QTextCodec::codecForName("UTF-8"));
+    configIniWrite.setValue("/Warning/Edit", "Carefully!!!");
+    configIniWrite.setValue("/Path", output_path);
+    //===============================================================
+    ui->lineEdit_outputPath->setText(output_path);
 }
 

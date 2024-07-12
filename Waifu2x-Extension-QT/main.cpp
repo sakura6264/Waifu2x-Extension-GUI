@@ -3,10 +3,17 @@
 #include <QFontDatabase>
 #include <QApplication>
 #include <QSplashScreen>
+#include "QtGlobal"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // 高分辨率屏幕支持
+    qputenv("DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1","1");
+    // this putenv is to fix vulkan find device error
+    // has no effect on this program
+    // only for subprocess
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
     QApplication app(argc, argv);
     QSplashScreen *splash = new QSplashScreen;
     QPixmap splash_img = QPixmap(":/SplashScreen.png");

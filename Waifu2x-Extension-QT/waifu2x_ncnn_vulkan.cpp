@@ -64,8 +64,8 @@ int MainWindow::Waifu2x_NCNN_Vulkan_Image(int rowNum, bool ReProcess_MissingAlph
     QString file_path = file_getFolderPath(fileinfo);
     QString OutPut_Path = file_path + "/" + file_name + "_waifu2x_" + QString::number(ScaleRatio, 10) + "x_" + QString::number(DenoiseLevel, 10) + "n_" + file_ext + ".png";
     //============================== 放大 =======================================
-    QString Waifu2x_folder_path = Waifu2x_ncnn_vulkan_FolderPath;
-    QString program = Waifu2x_ncnn_vulkan_ProgramPath;
+    QString Waifu2x_folder_path = Current_Path + "/waifu2x-ncnn-vulkan";
+    QString program = Waifu2x_folder_path + "/waifu2x-ncnn-vulkan.exe";
     //==========
     int ScaleRatio_tmp = Calculate_Temporary_ScaleRatio_W2xNCNNVulkan(ScaleRatio);
     //======
@@ -210,7 +210,7 @@ int MainWindow::Waifu2x_NCNN_Vulkan_Image(int rowNum, bool ReProcess_MissingAlph
     //=========================== 另存为JPG&压缩JPG ===========================================
     OutPutPath_Final = SaveImageAs_FormatAndQuality(SourceFile_fullPath_Original, OutPutPath_Final, ScaleRatio, true, DenoiseLevel);
     //================== 检查是否丢失了透明通道 =====================
-    if (ReProcess_MissingAlphaChannel == false && ui->comboBox_version_Waifu2xNCNNVulkan->currentIndex() == 0)
+    if (ReProcess_MissingAlphaChannel == false)
     {
         QImage QImage_source(SourceFile_fullPath_Original);
         QImage QImage_Final(OutPutPath_Final);
@@ -516,8 +516,8 @@ int MainWindow::Waifu2x_NCNN_Vulkan_GIF_scale(QMap<QString, QString> Sub_Thread_
     QString Frame_fileOutPutPath = ScaledFramesFolderPath + "/" + Frame_fileName_basename + "_waifu2x_" + QString::number(ScaleRatio, 10) + "x_" + QString::number(DenoiseLevel, 10) + "n.png";
     //========================================================================
 
-    QString Waifu2x_folder_path = Waifu2x_ncnn_vulkan_FolderPath;
-    QString program = Waifu2x_ncnn_vulkan_ProgramPath;
+    QString Waifu2x_folder_path = Current_Path + "/waifu2x-ncnn-vulkan";
+    QString program = Waifu2x_folder_path + "/waifu2x-ncnn-vulkan.exe";
     //======
     int ScaleRatio_tmp = Calculate_Temporary_ScaleRatio_W2xNCNNVulkan(ScaleRatio);
     //======
@@ -1471,9 +1471,8 @@ int MainWindow::Waifu2x_NCNN_Vulkan_Video_scale(QMap<QString, QString> Sub_Threa
     QString Frame_fileOutPutPath = ScaledFramesFolderPath + "/" + Frame_fileName_basename + "_waifu2x_" + QString::number(ScaleRatio, 10) + "x_" + QString::number(DenoiseLevel, 10) + "n.png";
     //========================================================================
     //========
-    QString Waifu2x_folder_path = Waifu2x_ncnn_vulkan_FolderPath;
-    //========
-    QString program = Waifu2x_ncnn_vulkan_ProgramPath;
+    QString Waifu2x_folder_path = Current_Path + "/waifu2x-ncnn-vulkan";
+    QString program = Waifu2x_folder_path + "/waifu2x-ncnn-vulkan.exe";
     //=========
     int ScaleRatio_tmp = Calculate_Temporary_ScaleRatio_W2xNCNNVulkan(ScaleRatio);
     //===================
@@ -1619,8 +1618,8 @@ int MainWindow::Waifu2x_DetectGPU()
     QString OutputPath = Current_Path + "/Compatibility_Test/res.png";
     QFile::remove(OutputPath);
     //==============
-    QString Waifu2x_folder_path = Waifu2x_ncnn_vulkan_FolderPath;
-    QString program = Waifu2x_ncnn_vulkan_ProgramPath;
+    QString Waifu2x_folder_path = Current_Path + "/waifu2x-ncnn-vulkan";
+    QString program = Waifu2x_folder_path + "/waifu2x-ncnn-vulkan.exe";
     QString model_path = Waifu2x_folder_path + "/models-upconv_7_anime_style_art_rgb";
     //=========
     int GPU_ID = -1;
@@ -1724,6 +1723,7 @@ QStringList MainWindow::Waifu2x_NCNN_Vulkan_PreLoad_Settings()
     }
     // Model
     int ImageStyle = ui->comboBox_ImageStyle->currentIndex();
+    QString Waifu2x_ncnn_vulkan_FolderPath = Current_Path + "/waifu2x-ncnn-vulkan";
     QString model_path = "";
     if (ui->comboBox_model_vulkan->currentIndex() == 0)
     {

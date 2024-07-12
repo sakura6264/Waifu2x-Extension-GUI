@@ -160,7 +160,7 @@ QMap<QString, int> MainWindow::video_get_Resolution(QString VideoFileFullPath)
     }
     //========================================================================================
     QString FrameImageFullPath = "";
-    FrameImageFullPath = file_getBaseName(VideoFileFullPath) + "_GetVideoRes_W2xEX.jpg";
+    FrameImageFullPath = file_getBaseName(VideoFileFullPath) + "_GetVideoRes.jpg";
     QFile::remove(FrameImageFullPath);
     QString program_ffmpeg = Current_Path + "/ffmpeg.exe";
     QStringList args_ffmpeg = {"-ss", "0", "-i", VideoFileFullPath, "-vframes", "1", FrameImageFullPath};

@@ -1684,76 +1684,82 @@ QStringList MainWindow::RealESRGAN_NCNN_Vulkan_PreLoad_Settings()
     case 1:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("Photo-Conservative-x4");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("Photo-HQ-W4xEX");
         break;
     }
     case 2:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("RealESRGANv2-animevideo-xsx2");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("Photo-Conservative-x4");
         break;
     }
     case 3:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("RealESRGANv2-animevideo-xsx4");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("RealESRGANv2-animevideo-xsx2");
         break;
     }
     case 4:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("Universal-Fast-W2xEX");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("RealESRGANv2-animevideo-xsx4");
         break;
     }
     case 5:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("esrgan-x4");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("Universal-Fast-W2xEX");
         break;
     }
     case 6:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-animevideov3-x2");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("esrgan-x4");
         break;
     }
     case 7:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-animevideov3-x3");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-animevideov3-x2");
         break;
     }
     case 8:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-animevideov3-x4");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-animevideov3-x3");
         break;
     }
     case 9:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-general-wdn-x4v3");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-animevideov3-x4");
         break;
     }
     case 10:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-general-x4v3");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-general-wdn-x4v3");
         break;
     }
     case 11:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesrgan-x4plus-anime");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesr-general-x4v3");
         break;
     }
     case 12:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
-        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesrgan-x4plus");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesrgan-x4plus-anime");
         break;
     }
     case 13:
+    {
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
+        RealESRGAN_NCNN_Vulkan_Settings_str.append("realesrgan-x4plus");
+        break;
+    }
+    case 14:
     {
         RealESRGAN_NCNN_Vulkan_Settings_str.append("-n");
         RealESRGAN_NCNN_Vulkan_Settings_str.append("realesrnet-x4plus");

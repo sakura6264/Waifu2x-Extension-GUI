@@ -43,9 +43,7 @@ int MainWindow::Settings_Save()
     configIniWrite->setValue("/settings/TTAVulkan", ui->checkBox_TTA_vulkan->isChecked());
     configIniWrite->setValue("/settings/TTAConverter", ui->checkBox_TTA_converter->isChecked());
     configIniWrite->setValue("/settings/TTA_SRMD", ui->checkBox_TTA_srmd->isChecked());
-    configIniWrite->setValue("/settings/TileSize_SRMD", ui->spinBox_TileSize_srmd->value());
-    configIniWrite->setValue("/settings/Version_Waifu2xNCNNVulkan", ui->comboBox_version_Waifu2xNCNNVulkan->currentIndex());
-    //===
+    configIniWrite->setValue("/settings/TileSize_SRMD", ui->spinBox_TileSize_srmd->value());    //===
     configIniWrite->setValue("/settings/TTA_Waifu2xCaffe", ui->checkBox_TTA_Waifu2xCaffe->isChecked());
     configIniWrite->setValue("/settings/Model_2D_Waifu2xCaffe", ui->comboBox_Model_2D_Waifu2xCaffe->currentIndex());
     configIniWrite->setValue("/settings/Model_3D_Waifu2xCaffe", ui->comboBox_Model_3D_Waifu2xCaffe->currentIndex());
@@ -188,7 +186,6 @@ int MainWindow::Settings_Save()
     configIniWrite->setValue("/settings/checkBox_BilateralFilterFaster_Post_Anime4k", ui->checkBox_BilateralFilterFaster_Post_Anime4k->isChecked());
     //========================= 存储兼容性测试结果 ================
     configIniWrite->setValue("/settings/checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW", ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW->isChecked());
-    configIniWrite->setValue("/settings/checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P", ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P->isChecked());
     configIniWrite->setValue("/settings/checkBox_isCompatible_Waifu2x_Converter", ui->checkBox_isCompatible_Waifu2x_Converter->isChecked());
     configIniWrite->setValue("/settings/checkBox_isCompatible_SRMD_NCNN_Vulkan", ui->checkBox_isCompatible_SRMD_NCNN_Vulkan->isChecked());
     configIniWrite->setValue("/settings/checkBox_isCompatible_Anime4k_CPU", ui->checkBox_isCompatible_Anime4k_CPU->isChecked());
@@ -253,7 +250,6 @@ int MainWindow::Settings_Read_Apply()
     ui->checkBox_TTA_converter->setChecked(Settings_Read_value("/settings/TTAConverter").toBool());
     ui->checkBox_TTA_srmd->setChecked(Settings_Read_value("/settings/TTA_SRMD").toBool());
     ui->spinBox_TileSize_srmd->setValue(Settings_Read_value("/settings/TileSize_SRMD").toInt());
-    ui->comboBox_version_Waifu2xNCNNVulkan->setCurrentIndex(Settings_Read_value("/settings/Version_Waifu2xNCNNVulkan").toInt());
     //===
     ui->checkBox_TTA_RealsrNCNNVulkan->setChecked(Settings_Read_value("/settings/checkBox_TTA_RealsrNCNNVulkan").toBool());
     ui->comboBox_Model_RealsrNCNNVulkan->setCurrentIndex(Settings_Read_value("/settings/comboBox_Model_RealsrNCNNVulkan").toInt());
@@ -446,7 +442,6 @@ int MainWindow::Settings_Read_Apply()
     ui->checkBox_BilateralFilterFaster_Post_Anime4k->setChecked(Settings_Read_value("/settings/checkBox_BilateralFilterFaster_Post_Anime4k").toBool());
     //===================== 加载兼容性测试结果 ============================
     isCompatible_Waifu2x_NCNN_Vulkan_NEW = Settings_Read_value("/settings/checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW").toBool();
-    isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P = Settings_Read_value("/settings/checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P").toBool();
     isCompatible_Waifu2x_Converter = Settings_Read_value("/settings/checkBox_isCompatible_Waifu2x_Converter").toBool();
     isCompatible_SRMD_NCNN_Vulkan = Settings_Read_value("/settings/checkBox_isCompatible_SRMD_NCNN_Vulkan").toBool();
     isCompatible_Anime4k_CPU = Settings_Read_value("/settings/checkBox_isCompatible_Anime4k_CPU").toBool();
@@ -464,7 +459,6 @@ int MainWindow::Settings_Read_Apply()
     isCompatible_RealCUGAN_NCNN_Vulkan = Settings_Read_value("/settings/checkBox_isCompatible_RealCUGAN_NCNN_Vulkan").toBool();
     //===
     ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW->setChecked(isCompatible_Waifu2x_NCNN_Vulkan_NEW);
-    ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P->setChecked(isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P);
     ui->checkBox_isCompatible_Waifu2x_Converter->setChecked(isCompatible_Waifu2x_Converter);
     ui->checkBox_isCompatible_SRMD_NCNN_Vulkan->setChecked(isCompatible_SRMD_NCNN_Vulkan);
     ui->checkBox_isCompatible_Anime4k_CPU->setChecked(isCompatible_Anime4k_CPU);
@@ -495,7 +489,6 @@ int MainWindow::Settings_Read_Apply()
     on_checkBox_GPUMode_Anime4K_stateChanged(0);
     on_checkBox_ShowInterPro_stateChanged(0);
     //====
-    on_comboBox_version_Waifu2xNCNNVulkan_currentIndexChanged(0);
     on_comboBox_Engine_GIF_currentIndexChanged(0);
     isShowAnime4kWarning = false;
     on_comboBox_Engine_Image_currentIndexChanged(0);

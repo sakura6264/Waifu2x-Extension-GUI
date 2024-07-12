@@ -1815,28 +1815,6 @@ is larger than the specified resolution.</string>
                   <property name="bottomMargin">
                    <number>6</number>
                   </property>
-                  <item row="0" column="0" colspan="3">
-                   <widget class="QLineEdit" name="lineEdit_outputPath">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="focusPolicy">
-                     <enum>Qt::StrongFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::ActionsContextMenu</enum>
-                    </property>
-                    <property name="toolTip">
-                     <string>Output path must be a Folder.[Right Click]</string>
-                    </property>
-                    <property name="text">
-                     <string notr="true"/>
-                    </property>
-                    <property name="clearButtonEnabled">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="1" column="0" rowspan="3" colspan="3">
                    <widget class="QScrollArea" name="scrollArea_outputPathSettings">
                     <property name="styleSheet">
@@ -1857,11 +1835,27 @@ is larger than the specified resolution.</string>
                        <x>0</x>
                        <y>0</y>
                        <width>460</width>
-                       <height>124</height>
+                       <height>154</height>
                       </rect>
                      </property>
                      <layout class="QGridLayout" name="gridLayout_37">
-                      <item row="0" column="0">
+                      <item row="3" column="0">
+                       <widget class="QCheckBox" name="checkBox_KeepParentFolder">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>Keep parent folder</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
                        <layout class="QHBoxLayout" name="horizontalLayout_5">
                         <item>
                          <widget class="QCheckBox" name="checkBox_OutPath_isEnabled">
@@ -1905,7 +1899,7 @@ file that exists in the output path.</string>
                         </item>
                        </layout>
                       </item>
-                      <item row="1" column="0">
+                      <item row="2" column="0">
                        <widget class="QCheckBox" name="checkBox_OutPath_KeepOriginalFileName">
                         <property name="enabled">
                          <bool>false</bool>
@@ -1921,21 +1915,41 @@ file that exists in the output path.</string>
                         </property>
                        </widget>
                       </item>
-                      <item row="2" column="0">
-                       <widget class="QCheckBox" name="checkBox_KeepParentFolder">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                          <horstretch>0</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="text">
-                         <string>Keep parent folder</string>
-                        </property>
-                       </widget>
+                      <item row="0" column="0">
+                       <layout class="QGridLayout" name="gridLayout_9">
+                        <item row="0" column="0" colspan="6">
+                         <widget class="QLineEdit" name="lineEdit_outputPath">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="focusPolicy">
+                           <enum>Qt::StrongFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::ActionsContextMenu</enum>
+                          </property>
+                          <property name="toolTip">
+                           <string>Output path must be a Folder.[Right Click]</string>
+                          </property>
+                          <property name="text">
+                           <string notr="true"/>
+                          </property>
+                          <property name="clearButtonEnabled">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="7">
+                         <widget class="QPushButton" name="pushButton_browser_path">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>...</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
                       </item>
                      </layout>
                     </widget>
@@ -3020,23 +3034,6 @@ padding:10px;
                   <property name="text">
                    <string>Detect available GPU ID</string>
                   </property>
-                 </widget>
-                </item>
-                <item row="2" column="1" colspan="2">
-                 <widget class="QComboBox" name="comboBox_version_Waifu2xNCNNVulkan">
-                  <property name="currentIndex">
-                   <number>0</number>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string>Latest</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>fp16p</string>
-                   </property>
-                  </item>
                  </widget>
                 </item>
                 <item row="1" column="1" colspan="2">
@@ -5632,6 +5629,11 @@ but the effect may not be obvious. It is not recommended to enable it.</string>
                   <item>
                    <property name="text">
                     <string>Anime-HQ-W4xEX</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Photo-HQ-W4xEX</string>
                    </property>
                   </item>
                   <item>
@@ -8333,27 +8335,6 @@ padding:10px;
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QCheckBox" name="checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="toolTip">
-               <string>Image processing engine.</string>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QCheckBox:disabled{
-	color: rgb(0, 0, 0);
-}</string>
-              </property>
-              <property name="text">
-               <string notr="true">Waifu2x-ncnn-vulkan(fp16p)</string>
-              </property>
-             </widget>
-            </item>
             <item row="3" column="0">
              <widget class="QCheckBox" name="checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW">
               <property name="enabled">
@@ -8371,7 +8352,7 @@ padding:10px;
 }</string>
               </property>
               <property name="text">
-               <string>Waifu2x-ncnn-vulkan(Latest)</string>
+               <string>Waifu2x-ncnn-vulkan</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -8451,48 +8432,6 @@ padding:10px;
               </property>
              </widget>
             </item>
-            <item row="4" column="2">
-             <widget class="QCheckBox" name="checkBox_isCompatible_RealCUGAN_NCNN_Vulkan">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="toolTip">
-               <string>Image processing engine.</string>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QCheckBox:disabled{
-	color: rgb(0, 0, 0);
-}</string>
-              </property>
-              <property name="text">
-               <string>RealCUGAN-ncnn-vulkan</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QCheckBox" name="checkBox_isCompatible_RealESRGAN_NCNN_Vulkan">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="toolTip">
-               <string>Image processing engine.</string>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QCheckBox:disabled{
-	color: rgb(0, 0, 0);
-}</string>
-              </property>
-              <property name="text">
-               <string>RealESRGAN-ncnn-vulkan</string>
-              </property>
-             </widget>
-            </item>
             <item row="7" column="2">
              <widget class="QCheckBox" name="checkBox_isCompatible_Gifsicle">
               <property name="toolTip">
@@ -8557,16 +8496,6 @@ padding:10px;
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
-             <widget class="QCheckBox" name="checkBox_isCompatible_Realsr_NCNN_Vulkan">
-              <property name="toolTip">
-               <string>Image processing engine.</string>
-              </property>
-              <property name="text">
-               <string notr="true">Realsr-ncnn-vulkan</string>
-              </property>
-             </widget>
-            </item>
             <item row="8" column="1">
              <widget class="QCheckBox" name="checkBox_isCompatible_SoX">
               <property name="toolTip">
@@ -8584,6 +8513,58 @@ padding:10px;
               </property>
               <property name="text">
                <string notr="true">FFmpeg</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QCheckBox" name="checkBox_isCompatible_Realsr_NCNN_Vulkan">
+              <property name="toolTip">
+               <string>Image processing engine.</string>
+              </property>
+              <property name="text">
+               <string notr="true">Realsr-ncnn-vulkan</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBox_isCompatible_RealESRGAN_NCNN_Vulkan">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
+              </property>
+              <property name="toolTip">
+               <string>Image processing engine.</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QCheckBox:disabled{
+	color: rgb(0, 0, 0);
+}</string>
+              </property>
+              <property name="text">
+               <string>RealESRGAN-ncnn-vulkan</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QCheckBox" name="checkBox_isCompatible_RealCUGAN_NCNN_Vulkan">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
+              </property>
+              <property name="toolTip">
+               <string>Image processing engine.</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QCheckBox:disabled{
+	color: rgb(0, 0, 0);
+}</string>
+              </property>
+              <property name="text">
+               <string>RealCUGAN-ncnn-vulkan</string>
               </property>
              </widget>
             </item>

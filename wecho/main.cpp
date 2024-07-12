@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
         text = text_build;
     }
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // high dpi
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
     QApplication app(argc, argv);
     QFile file(":/light/stylesheet.qss");
     file.open(QFile::ReadOnly | QFile::Text);

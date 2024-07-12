@@ -55,38 +55,6 @@ int MainWindow::Waifu2x_Compatibility_Test()
     QFile::remove(OutputPath);
     emit Send_Add_progressBar_CompatibilityTest();
     //==========================================
-    //     waifu2x-ncnn-vulkan 20200414(fp16p)
-    //==========================================
-    Waifu2x_folder_path = Current_Path + "/waifu2x-ncnn-vulkan";
-    program = Waifu2x_folder_path + "/waifu2x-ncnn-vulkan-fp16p.exe";
-    model_path = Waifu2x_folder_path + "/models-upconv_7_anime_style_art_rgb";
-    QProcess *Waifu2x_vulkan_fp16p = new QProcess();
-    QStringList args_waifu2x_nccn_vulkan_fp16p = {"-i", InputPath, "-o", OutputPath, "-s", "2", "-n", "0", "-t", "32", "-m", model_path, "-j", "1:1:1"};
-    for (int CompatTest_retry = 0; CompatTest_retry < 3; CompatTest_retry++)
-    {
-        Waifu2x_vulkan_fp16p->start(program, args_waifu2x_nccn_vulkan_fp16p);
-        if(waitForProcess(Waifu2x_vulkan_fp16p) == TerminatedByFlag) {
-            delete Waifu2x_vulkan_fp16p;
-            return 0;
-        }
-
-        if (QFile::exists(OutputPath))
-            break;
-    }
-    delete Waifu2x_vulkan_fp16p;
-    if (QFile::exists(OutputPath))
-    {
-        emit Send_TextBrowser_NewMessage("Compatible with waifu2x-ncnn-vulkan(fp16p): Yes");
-        isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P = true;
-    }
-    else
-    {
-        emit Send_TextBrowser_NewMessage("Compatible with waifu2x-ncnn-vulkan(fp16p): No.");
-        isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P = false;
-    }
-    QFile::remove(OutputPath);
-    emit Send_Add_progressBar_CompatibilityTest();
-    //==========================================
     //            waifu2x-converter
     //==========================================
     Waifu2x_folder_path = Current_Path + "/waifu2x-converter";
@@ -570,7 +538,6 @@ int MainWindow::Waifu2x_Compatibility_Test()
     //=================
     taskKill("Anime4K.exe");
     taskKill("waifu2x-ncnn-vulkan.exe");
-    taskKill("waifu2x-ncnn-vulkan-fp16p.exe");
     taskKill("waifu2x-converter-cpp.exe");
     taskKill("srmd-ncnn-vulkan.exe");
     taskKill("waifu2x-caffe.exe");
@@ -590,7 +557,6 @@ int MainWindow::Waifu2x_Compatibility_Test_finished()
 {
     // 更改checkbox状态以显示测试结果
     ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW->setChecked(isCompatible_Waifu2x_NCNN_Vulkan_NEW);
-    ui->checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P->setChecked(isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P);
     ui->checkBox_isCompatible_Waifu2x_Converter->setChecked(isCompatible_Waifu2x_Converter);
     ui->checkBox_isCompatible_SRMD_NCNN_Vulkan->setChecked(isCompatible_SRMD_NCNN_Vulkan);
     ui->checkBox_isCompatible_Anime4k_CPU->setChecked(isCompatible_Anime4k_CPU);
@@ -669,8 +635,6 @@ int MainWindow::Waifu2x_Compatibility_Test_finished()
             on_comboBox_Engine_GIF_currentIndexChanged(0);
             on_comboBox_Engine_Video_currentIndexChanged(0);
             //====
-            ui->comboBox_version_Waifu2xNCNNVulkan->setCurrentIndex(0);
-            on_comboBox_version_Waifu2xNCNNVulkan_currentIndexChanged(0);
             ui->tabWidget->setCurrentIndex(0);
             return 0;
         }
@@ -699,21 +663,6 @@ int MainWindow::Waifu2x_Compatibility_Test_finished()
             on_comboBox_Engine_Video_currentIndexChanged(0);
             //====
             ui->comboBox_ProcessMode_Waifu2xCaffe->setCurrentIndex(2);
-            ui->tabWidget->setCurrentIndex(0);
-            return 0;
-        }
-        //========== 检查waifu2x-ncnn-vulkan FP16P 的兼容性 ===============
-        if (isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P == true)
-        {
-            ui->comboBox_Engine_Image->setCurrentIndex(0);
-            ui->comboBox_Engine_GIF->setCurrentIndex(0);
-            ui->comboBox_Engine_Video->setCurrentIndex(0);
-            on_comboBox_Engine_Image_currentIndexChanged(0);
-            on_comboBox_Engine_GIF_currentIndexChanged(0);
-            on_comboBox_Engine_Video_currentIndexChanged(0);
-            //====
-            ui->comboBox_version_Waifu2xNCNNVulkan->setCurrentIndex(1);
-            on_comboBox_version_Waifu2xNCNNVulkan_currentIndexChanged(0);
             ui->tabWidget->setCurrentIndex(0);
             return 0;
         }

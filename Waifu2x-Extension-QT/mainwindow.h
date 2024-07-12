@@ -39,6 +39,7 @@
 #include <QScrollBar>
 #include <QThread>
 #include <QRegExp>
+#include <QUuid>
 #include "utils.h"
 
 typedef QList<QMap<QString, QString>> QList_QMap_QStrQStr;
@@ -147,9 +148,6 @@ public:
     //================================= Waifu2x ====================================
     QString OutPutFolder_main = ""; // 总输出文件夹
     int Waifu2xMainThread();        // waifu2x总线程,负责读取文件列表,调度waifu2x放大线程
-    //==========================
-    QString Waifu2x_ncnn_vulkan_FolderPath = "";
-    QString Waifu2x_ncnn_vulkan_ProgramPath = "";
     //===
     int Waifu2x_NCNN_Vulkan_Image(int rowNum, bool ReProcess_MissingAlphaChannel); // vulkan放大图片线程
     // vulakn放大GIF线程:1.主线程,拆分,调度放大子线程,组装&压缩;2.放大子线程,负责放大所有帧以及调整大小
@@ -280,7 +278,6 @@ public:
     void Finish_progressBar_CompatibilityTest();
     // 兼容性检测
     bool isCompatible_Waifu2x_NCNN_Vulkan_NEW = false;
-    bool isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P = false;
     bool isCompatible_SRMD_NCNN_Vulkan = false;
     bool isCompatible_Waifu2x_Converter = false;
     bool isCompatible_Anime4k_CPU = false;
@@ -718,15 +715,11 @@ private slots:
 
     void on_checkBox_ProcessVideoBySegment_stateChanged(int arg1);
 
-    void on_comboBox_version_Waifu2xNCNNVulkan_currentIndexChanged(int index);
-
     void on_checkBox_EnablePreProcessing_Anime4k_stateChanged(int arg1);
 
     void on_checkBox_EnablePostProcessing_Anime4k_stateChanged(int arg1);
 
     void on_checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_clicked();
-
-    void on_checkBox_isCompatible_Waifu2x_NCNN_Vulkan_NEW_FP16P_clicked();
 
     void on_checkBox_isCompatible_SRMD_NCNN_Vulkan_clicked();
 
@@ -913,6 +906,8 @@ private slots:
     void on_groupBox_video_settings_clicked();
 
     void on_pushButton_view_textbrowser_clicked();
+
+    void on_pushButton_browser_path_clicked();
 
 signals:
     void Send_Table_EnableSorting(bool EnableSorting);

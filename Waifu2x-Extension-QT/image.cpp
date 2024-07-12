@@ -231,8 +231,8 @@ QString MainWindow::Imgae_PreProcess(QString ImagePath, bool ReProcess_AlphaChan
         // 有alpha则开始转换
         QString file_name = file_getBaseName(ImagePath);
         QString file_Folder = file_getFolderPath(fileinfo_ImagePath);
-        QString OutPut_Path_WebpCache = file_Folder + "/" + file_name + "_W2xEX_temp.webp"; // 输出的webp缓存的完整路径
-        QString OutPut_Path_FinalPNG = file_Folder + "/" + file_name + "_W2xEX_PPAC.png";   // 输出的png图片的完整路径
+        QString OutPut_Path_WebpCache = file_Folder + "/" + file_name + "_temp.webp"; // 输出的webp缓存的完整路径
+        QString OutPut_Path_FinalPNG = file_Folder + "/" + file_name + "_PPAC.png";   // 输出的png图片的完整路径
         //======
         QString program = Current_Path + "/convert.exe";
         QFile::remove(OutPut_Path_FinalPNG);
@@ -277,7 +277,7 @@ QString MainWindow::Imgae_PreProcess(QString ImagePath, bool ReProcess_AlphaChan
     // 不是PNG则开始转换
     QString file_name = file_getBaseName(ImagePath);
     QString file_Folder = file_getFolderPath(fileinfo_ImagePath);
-    QString OutPut_Path = file_Folder + "/" + file_name + "_W2xEX_" + file_ext_ImagePath + ".png"; // 输出的png图片的完整路径
+    QString OutPut_Path = file_Folder + "/" + file_name + "_" + file_ext_ImagePath + ".png"; // 输出的png图片的完整路径
     //======
     QString program = Current_Path + "/convert.exe";
     QFile::remove(OutPut_Path);

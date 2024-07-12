@@ -476,13 +476,15 @@ bool MainWindow::file_isDirWritable(QString DirPath)
     {
         DirPath = DirPath.left(DirPath.length() - 1);
     }
-    QString TestTemp = DirPath + "/RWTest_W2xEX.tmp";
+    QUuid uuid = QUuid::createUuid();
+
+    QString TestTemp = DirPath + "/." + uuid.toString() + ".RWTest.tmp";
     QFile file_TestTemp(TestTemp);
     file_TestTemp.remove();
     if (file_TestTemp.open(QIODevice::ReadWrite | QIODevice::Text)) // QIODevice::ReadWrite支持读写
     {
         QTextStream stream(&file_TestTemp);
-        stream << "W2xEX";
+        stream << "WRITETEST";
     }
     if (QFile::exists(TestTemp))
     {
