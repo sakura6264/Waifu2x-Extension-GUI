@@ -8,3 +8,5 @@ Edited from Someone's Project. Although that project has many stars, it contains
 + fix the memory leak. (original code never use delete after using new)
 + remove translations and edit some text.
 + fix lots of bugs.
+
+# I won't update this because I don't like to fix shit.
